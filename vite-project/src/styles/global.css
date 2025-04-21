@@ -1,0 +1,79 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colors */
+  --primary-dark-blue: #1a237e; /* Deep blue for header/footer */
+  --primary-button: #D81B60; /* Updated: Magenta/Red for buttons */
+  --primary-button-hover: #C2185B; /* Updated: Darker shade for hover */
+  --highlight-yellow: #fdd835; /* Yellow for hero text highlight */
+  --card-background: #ffffff;
+  --body-background: #f5f5f5; /* Light grey background */
+  --text-light: #ffffff;
+  --text-dark: #212121;
+  --text-muted: #757575;
+  --glow-start: #FFA726; /* Updated: Orange for glow */
+  --glow-end: #EC407A;   /* Updated: Pink for glow */
+
+  /* Fonts */
+  --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Example font stack */
+
+  /* Spacing */
+  --spacing-sm: 0.5rem; /* Added from products.scss */
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem; /* Added from home.scss */
+
+
+  /* Borders */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px; /* Added from home.scss */
+
+
+  /* Shadows */
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--body-background);
+  color: var(--text-dark);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-button);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Keyframes (moved from home.scss) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Remove original Vite styles if they exist */
+.logo, .logo.vanilla, .card, .read-the-docs {
+  display: none; /* Hide default Vite elements */
+}
+
+/* Main Content Area Base */
+main#app {
+  flex-grow: 1;
+  padding: 0; /* Let specific page containers handle padding */
+  width: 100%;
+} 

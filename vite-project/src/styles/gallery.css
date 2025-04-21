@@ -1,0 +1,259 @@
+/* Gallery Specific Styles */
+#gallery {
+  padding: var(--spacing-lg) 0; /* Add some padding */
+  max-width: 1200px; /* Consistency */
+  margin: 0 auto; /* Center */
+}
+
+#gallery h1 {
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  color: var(--primary-dark-blue);
+}
+
+#gallery p:first-of-type { /* Target the description paragraph */
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-muted);
+}
+
+#gallery .search-container { /* Added container for centering */
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+#gallery-search {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius-sm);
+  min-width: 300px; /* Give search input some width */
+}
+
+#search-button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-button);
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.2s ease;
+}
+
+#search-button:hover {
+  background-color: var(--primary-button-hover);
+}
+
+#gallery-images {
+  /* Remove grid layout */
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+
+  /* Add Masonry layout styles */
+  column-count: 5; /* Default number of columns */
+  column-gap: var(--spacing-md);
+  width: 100%;
+  margin-top: var(--spacing-lg); /* Ensure consistent spacing */
+}
+
+/* Style for each card/item */
+.gallery-card {
+  break-inside: avoid; /* Prevent items breaking across columns */
+  margin-bottom: var(--spacing-md);
+  background-color: white;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0,0,0,0.1));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block; /* Important for column layout */
+  width: 100%; /* Take full width of the column */
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg, 0 10px 20px rgba(0,0,0,0.15));
+}
+
+#gallery-images img {
+  width: 100%;
+  height: auto; /* Let height be determined by image ratio */
+  object-fit: cover;
+  /* Remove fixed height */
+  /* height: 180px; */
+  /* Remove individual border-radius/shadow (now on card) */
+  /* border-radius: var(--border-radius-sm); */
+  /* box-shadow: var(--shadow-sm, 0 2px 4px rgba(0,0,0,0.1)); */
+  display: block; /* Remove extra space below inline images */
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Responsive adjustments for column count */
+@media (max-width: 1200px) {
+  #gallery-images {
+    column-count: 4;
+  }
+}
+
+@media (max-width: 900px) {
+  #gallery-images {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 600px) {
+  #gallery-images {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 400px) {
+  #gallery-images {
+    column-count: 1;
+  }
+}
+
+/* Keep fallback styles */
+#gallery-fallback {
+    grid-column: 1 / -1; /* Span full grid width */
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--text-muted);
+}
+
+/* --- Modal Styles --- */
+#modal-container {
+  /* Initially hidden */
+  display: none; 
+}
+
+#modal-container.visible {
+  display: flex; /* Show when visible */
+}
+
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: var(--spacing-md);
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+  border-radius: var(--border-radius-lg);
+  overflow: hidden; /* Important for containing image/footer */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem; /* Approx 2rem */
+  cursor: pointer;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-image {
+  /* Let image take available space, constrain by max height/width */
+  max-width: 100%; 
+  max-height: calc(90vh - 110px); /* Adjust based on footer height + padding */
+  object-fit: contain;
+  display: block;
+  margin: 0 auto; /* Center image within its container */
+}
+
+.modal-footer {
+  background-color: white;
+  padding: var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+@media (max-width: 600px) {
+  .modal-footer {
+      flex-direction: column;
+      gap: var(--spacing-md);
+      align-items: flex-start;
+  }
+}
+
+.modal-user-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.modal-user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-user-details {
+  .modal-user-name {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0 0 5px 0;
+    font-size: 1rem; /* Approx base */
+  }
+
+  .modal-user-social {
+    color: var(--text-muted);
+    font-size: 0.875rem; /* Approx sm */
+    margin: 0;
+  }
+}
+
+
+
+.modal-download-button {
+  background-color: var(--primary-button);
+  color: white;
+  border: none;
+  font-size: 1rem; /* Approx base */
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.modal-download-button:hover {
+  background-color: var(--primary-button-hover);
+  transform: translateY(-2px);
+  color: white; /* Keep text color */
+} 
